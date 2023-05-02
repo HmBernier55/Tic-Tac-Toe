@@ -1,0 +1,165 @@
+:root {
+  --Teal: hsl(178, 60%, 48%);
+  --Light-teal: hsl(178, 75%, 65%);
+  --Yellow: hsl(39, 88%, 58%);
+  --Light-yellow: hsl(39, 100%, 69%);
+  --Navy-blue: hsl(202, 32%, 15%);
+  --Semi-navy-blue: hsl(199, 35%, 19%);
+  --Silver: hsl(198, 23%, 72%);
+  --Light-silver: hsl(197, 33%, 89%);
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--Navy-blue);
+  display: grid;
+  height: 100vh;
+  place-items: center;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* --------------------------------- START MENU --------------------------------- */
+/* ------------------------------------------------------------------------------ */
+
+.game-menu {
+  display: none; /*Change to flex to get start menu to appear*/
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 460px;
+}
+
+.game-menu__logo {
+  width: 72px;
+  height: 32px;
+}
+
+/* ----------------------- Player Choice Menu ----------------------- */
+
+.player-choice {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Semi-navy-blue);
+  border-radius: 15px;
+  margin: 32px 0;
+  box-shadow: inset 0px -8px 0px #10212a;
+}
+
+.player-choice__title {
+  color: var(--Silver);
+  padding: 24px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.player-choice__buttons {
+  display: flex;
+  width: 90%;
+  justify-content: space-evenly;
+  padding: 9px;
+  height: 72px;
+  border-radius: 10px;
+  background-color: var(--Navy-blue);
+}
+
+.player-button {
+  flex-basis: 50%;
+  border-radius: 10px;
+  border: 0;
+}
+
+.player-choice__buttons--x {
+  background-color: var(--Navy-blue);
+  border-color: var(--Navy-blue);
+}
+
+.player-choice__buttons--x > svg {
+  color: var(--Silver);
+}
+
+.player-choice__buttons--x:hover {
+  cursor: pointer;
+  background-color: var(--Semi-navy-blue);
+}
+
+.player-choice__buttons--o {
+  background-color: var(--Silver);
+  border-color: var(--Silver);
+}
+
+.player-choice__buttons--o > svg {
+  color: var(--Navy-blue);
+}
+
+.player-choice__buttons--o:hover {
+  cursor: pointer;
+  background-color: var(--Light-silver);
+}
+
+.player-choice__note {
+  margin-top: 17px;
+  margin-bottom: 30px;
+  color: var(--Silver);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.875px;
+  opacity: 0.5;
+}
+
+/* ----------------------- New Game Buttons ----------------------- */
+
+.game-menu__new-game {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+.game-menu__buttons {
+  height: 56px;
+  border-radius: 15px;
+  border: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--Navy-blue);
+}
+
+.game-menu__new-game--cpu {
+  background-color: var(--Yellow);
+  box-shadow: inset 0px -8px 0px #cc8b13;
+}
+
+.game-menu__new-game--cpu:hover {
+  cursor: pointer;
+  background-color: var(--Light-yellow);
+}
+
+.game-menu__new-game--multi {
+  background-color: var(--Teal);
+  box-shadow: inset 0px -8px 0px #118c87;
+}
+
+.game-menu__new-game--multi:hover {
+  cursor: pointer;
+  background-color: var(--Light-teal);
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ----------------------------- TIC TAC TOE BOARD ------------------------------ */
+/* ------------------------------------------------------------------------------ */
