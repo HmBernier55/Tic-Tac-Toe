@@ -86,29 +86,87 @@
       </div>
 
       <div class="game__board">
-        <div id="0" class="game__board-piece"></div>
-        <div id="1" class="game__board-piece"></div>
-        <div id="2" class="game__board-piece"></div>
-        <div id="3" class="game__board-piece"></div>
-        <div id="4" class="game__board-piece"></div>
-        <div id="5" class="game__board-piece"></div>
-        <div id="6" class="game__board-piece"></div>
-        <div id="7" class="game__board-piece"></div>
-        <div id="8" class="game__board-piece"></div>
+        <div id="block-0" class="game__board-piece">
+          <img class="board-piece" src="./assets/icon-o.svg" />
+        </div>
+        <div id="block-1" class="game__board-piece">
+          <img src="./assets/icon-x-outline.svg" class="board-piece" />
+        </div>
+        <div id="block-2" class="game__board-piece"></div>
+        <div id="block-3" class="game__board-piece"></div>
+        <div id="block-4" class="game__board-piece"></div>
+        <div id="block-5" class="game__board-piece"></div>
+        <div id="block-6" class="game__board-piece"></div>
+        <div id="block-7" class="game__board-piece"></div>
+        <div id="block-8" class="game__board-piece"></div>
       </div>
 
       <div class="game__bottom">
-        <div class="game__bottom--x">
-          <p class="game__bottom--x-text">X <span id="x-desc">(you)</span></p>
-          <span id="x-score">--</span>
+        <div class="game__bottom--x game__bottom--display">
+          <p class="game__bottom--text">
+            x <span id="x-desc" class="desc--text">(you)</span>
+          </p>
+          <span id="x-score" class="score--text">--</span>
         </div>
-        <div class="game__bottom--tie">
-          <p class="game__bottom--tie-text">ties</p>
-          <span id="tie-score">--</span>
+        <div class="game__bottom--tie game__bottom--display">
+          <p class="game__bottom--text">ties</p>
+          <span id="tie-score" class="score--text">--</span>
         </div>
-        <div class="game__bottom--o">
-          <p class="game__bottom--o-text">O <span id="o-desc">(you)</span></p>
-          <span id="o-score">--</span>
+        <div class="game__bottom--o game__bottom--display">
+          <p class="game__bottom--text">
+            o <span id="o-desc" class="desc--text">(you)</span>
+          </p>
+          <span id="o-score" class="score--text">--</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="round-end-modal">
+      <div class="round-end-modal__contents">
+        <span id="round-end-message">You Win!</span>
+
+        <div class="round-end-modal__contents--winner">
+          <img src="./assets/icon-o.svg" />
+          <p>Takes the Round</p>
+        </div>
+
+        <div class="round-end-modal__contents--buttons">
+          <button class="round-end__quit round-end__button--layout">
+            Quit
+          </button>
+          <button class="round-end__next-round round-end__button--layout">
+            Next Round
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="round-tie-modal">
+      <div class="round-end-modal__contents">
+        <p id="round-tie-message">Round Tied</p>
+
+        <div class="round-end-modal__contents--buttons">
+          <button class="round-end__quit round-end__button--layout">
+            Quit
+          </button>
+          <button class="round-end__next-round round-end__button--layout">
+            Next Round
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="restart-modal">
+      <div class="round-end-modal__contents">
+        <p id="round-tie-message">Restart Game?</p>
+
+        <div class="round-end-modal__contents--buttons">
+          <button class="round-end__quit round-end__button--layout">
+            No, Cancel
+          </button>
+          <button class="round-end__next-round round-end__button--layout">
+            Yes, Restart
+          </button>
         </div>
       </div>
     </section>

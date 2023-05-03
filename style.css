@@ -7,6 +7,7 @@
   --Semi-navy-blue: hsl(199, 35%, 19%);
   --Silver: hsl(198, 23%, 72%);
   --Light-silver: hsl(197, 33%, 89%);
+  --Modal-bg: hsla(0, 0%, 0%, 0.5);
 }
 
 *,
@@ -163,3 +164,383 @@ body {
 /* ------------------------------------------------------------------------------ */
 /* ----------------------------- TIC TAC TOE BOARD ------------------------------ */
 /* ------------------------------------------------------------------------------ */
+
+.game {
+  display: flex; /*Change to none to make it disappear*/
+  flex-direction: column;
+  width: 90%;
+  max-width: 460px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ----------------------- Top Section ----------------------- */
+
+.game__top {
+  display: grid;
+  width: 100%;
+  min-height: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.game__top--logo {
+  place-self: center start;
+}
+
+.game__top--turn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background-color: var(--Semi-navy-blue);
+  color: var(--Silver);
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  box-shadow: inset 0px -4px 0px #10212a;
+}
+
+.game__top--turn > img {
+  width: 16px;
+  height: 16px;
+}
+
+.game__top--turn-text {
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.875px;
+}
+
+.game__top--reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-self: end;
+  background-color: var(--Silver);
+  width: 40px;
+  height: 100%;
+  box-shadow: inset 0px -4px 0px #6b8997;
+  border-radius: 5px;
+}
+
+.game__top--reset > img {
+  width: 15px;
+  height: 15px;
+}
+
+.game__top--reset:hover {
+  cursor: pointer;
+  background-color: var(--Light-silver);
+}
+
+@media (min-width: 810px) {
+  .game__top {
+    height: 52px;
+  }
+  .game__top--turn {
+    gap: 13px;
+    border-radius: 10px;
+  }
+
+  .game__top--turn > img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .game__top--turn-text {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .game__top--reset {
+    width: 52px;
+    border-radius: 10px;
+  }
+
+  .game__top--reset > img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ----------------------- Board ----------------------- */
+
+.game__board {
+  display: grid;
+  width: 100%;
+  min-height: 328px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+  aspect-ratio: 1 / 1;
+}
+
+.game__board-piece {
+  display: grid;
+  place-items: center;
+  background-color: var(--Semi-navy-blue);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: inset 0px -8px 0px #10212a;
+}
+
+.game__board-piece:hover {
+  cursor: pointer;
+}
+
+.board-piece {
+  width: 40px;
+  height: 40px;
+}
+
+@media (min-width: 810px) {
+  .game__board-piece {
+    border-radius: 15px;
+  }
+
+  .board-piece {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* ----------------------- Score ----------------------- */
+
+.game__bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  gap: 20px;
+  min-height: 64px;
+}
+
+.game__bottom--display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.game__bottom--x {
+  background-color: var(--Teal);
+}
+
+.game__bottom--tie {
+  background-color: var(--Silver);
+}
+
+.game__bottom--o {
+  background-color: var(--Yellow);
+}
+
+.game__bottom--text {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.desc--text {
+  font-size: 0.75rem;
+}
+
+.score--text {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+@media (min-width: 810px) {
+  .game__bottom {
+    height: 72px;
+  }
+
+  .game__bottom--display {
+    border-radius: 15px;
+  }
+
+  .game__bottom--text {
+    font-size: 0.875rem;
+  }
+
+  .desc--text {
+    font-size: 0.875rem;
+  }
+
+  .score--text {
+    font-size: 1.5rem;
+  }
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------ END ROUND MODAL ------------------------------- */
+/* ------------------------------------------------------------------------------ */
+
+.round-end-modal {
+  display: none; /* Change to flex to show*/
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--Modal-bg);
+}
+
+.round-end-modal__contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 228px;
+  background-color: var(--Semi-navy-blue);
+}
+
+@media (min-width: 810px) {
+  .round-end-modal__contents {
+    height: 266px;
+  }
+}
+
+/* ----------------------- Win Message ----------------------- */
+
+#round-end-message {
+  color: var(--Silver);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.875px;
+  text-transform: uppercase;
+}
+
+.round-end-modal__contents--winner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.round-end-modal__contents--winner > img {
+  width: 30px;
+  height: 30px;
+}
+
+.round-end-modal__contents--winner > p {
+  color: var(--Yellow);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+@media (min-width: 810px) {
+  #round-end-message {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .round-end-modal__contents--winner {
+    gap: 24px;
+  }
+
+  .round-end-modal__contents--winner > img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .round-end-modal__contents--winner > p {
+    font-size: 2.5rem;
+    letter-spacing: 2.5px;
+  }
+}
+
+/* ----------------------- Quit/New Round Buttons ----------------------- */
+
+.round-end-modal__contents--buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.round-end__button--layout {
+  height: 52px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 0;
+  color: var(--Navy-blue);
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.round-end__quit {
+  background-color: var(--Silver);
+  box-shadow: inset 0px -4px 0px #6b8997;
+}
+
+.round-end__quit:hover {
+  cursor: pointer;
+  background-color: var(--Light-silver);
+}
+
+.round-end__next-round {
+  background-color: var(--Yellow);
+  box-shadow: inset 0px -4px 0px #cc8b13;
+}
+
+.round-end__next-round:hover {
+  cursor: pointer;
+  background-color: var(--Light-yellow);
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------ TIE ROUND MODAL ------------------------------- */
+/* ------------------------------------------------------------------------------ */
+
+.round-tie-modal {
+  display: none; /* Change to flex to show*/
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--Modal-bg);
+}
+
+/* ----------------------- Tie Message ----------------------- */
+
+#round-tie-message {
+  color: var(--Silver);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 810px) {
+  #round-tie-message {
+    margin-bottom: 31px;
+    font-size: 2.5rem;
+  }
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------ RESTART MODAL ------------------------------- */
+/* ------------------------------------------------------------------------------ */
+
+.restart-modal {
+  display: flex; /* Change to flex to show*/
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--Modal-bg);
+}
