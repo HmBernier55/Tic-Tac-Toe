@@ -29,7 +29,7 @@
       <div class="player-choice">
         <h2 class="player-choice__title">pick player 1's mark</h2>
         <div class="player-choice__buttons">
-          <button class="player-choice__buttons--x player-button">
+          <button id="X" class="player-choice__buttons--x player-button">
             <svg
               width="32"
               height="32"
@@ -43,7 +43,7 @@
               />
             </svg>
           </button>
-          <button class="player-choice__buttons--o player-button">
+          <button id="O" class="player-choice__buttons--o player-button">
             <svg
               width="32"
               height="32"
@@ -71,27 +71,23 @@
     </section>
 
     <!-- Tic-Tac-Toe Game Board -->
-    <section class="game">
+    <section class="game hidden">
       <div class="game__top">
         <div class="game__top--logo">
           <img src="./assets/logo.svg" alt="game logo" />
         </div>
         <div class="game__top--turn">
-          <img src="./assets/icon-x.svg" />
+          <img id="turn-icon" src="./assets/icon-x.svg" />
           <p class="game__top--turn-text">Turn</p>
         </div>
-        <div class="game__top--reset">
+        <button class="game__top--reset">
           <img src="./assets/icon-restart.svg" alt="reset" />
-        </div>
+        </button>
       </div>
 
       <div class="game__board">
-        <div id="block-0" class="game__board-piece">
-          <img class="board-piece" src="./assets/icon-o.svg" />
-        </div>
-        <div id="block-1" class="game__board-piece">
-          <img src="./assets/icon-x-outline.svg" class="board-piece" />
-        </div>
+        <div id="block-0" class="game__board-piece"></div>
+        <div id="block-1" class="game__board-piece"></div>
         <div id="block-2" class="game__board-piece"></div>
         <div id="block-3" class="game__board-piece"></div>
         <div id="block-4" class="game__board-piece"></div>
@@ -106,28 +102,28 @@
           <p class="game__bottom--text">
             x <span id="x-desc" class="desc--text">(you)</span>
           </p>
-          <span id="x-score" class="score--text">--</span>
+          <span id="x-score" class="score--text">0</span>
         </div>
         <div class="game__bottom--tie game__bottom--display">
           <p class="game__bottom--text">ties</p>
-          <span id="tie-score" class="score--text">--</span>
+          <span id="tie-score" class="score--text">0</span>
         </div>
         <div class="game__bottom--o game__bottom--display">
           <p class="game__bottom--text">
             o <span id="o-desc" class="desc--text">(you)</span>
           </p>
-          <span id="o-score" class="score--text">--</span>
+          <span id="o-score" class="score--text">0</span>
         </div>
       </div>
     </section>
 
-    <section class="round-end-modal">
+    <section class="round-end-modal hidden">
       <div class="round-end-modal__contents">
         <span id="round-end-message">You Win!</span>
 
         <div class="round-end-modal__contents--winner">
-          <img src="./assets/icon-o.svg" />
-          <p>Takes the Round</p>
+          <img id="win-image" src="./assets/icon-o.svg" />
+          <p id="win-desc">Takes the Round</p>
         </div>
 
         <div class="round-end-modal__contents--buttons">
@@ -141,7 +137,7 @@
       </div>
     </section>
 
-    <section class="round-tie-modal">
+    <section class="round-tie-modal hidden">
       <div class="round-end-modal__contents">
         <p id="round-tie-message">Round Tied</p>
 
@@ -156,19 +152,26 @@
       </div>
     </section>
 
-    <section class="restart-modal">
+    <section class="restart-modal hidden">
       <div class="round-end-modal__contents">
         <p id="round-tie-message">Restart Game?</p>
 
         <div class="round-end-modal__contents--buttons">
-          <button class="round-end__quit round-end__button--layout">
+          <button
+            id="cancel-btn"
+            class="round-end__quit round-end__button--layout"
+          >
             No, Cancel
           </button>
-          <button class="round-end__next-round round-end__button--layout">
+          <button
+            id="restart-btn"
+            class="round-end__next-round round-end__button--layout"
+          >
             Yes, Restart
           </button>
         </div>
       </div>
     </section>
+    <script src="index.js" type="module"></script>
   </body>
 </html>
