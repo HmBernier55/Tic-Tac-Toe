@@ -1,5 +1,11 @@
 const initialValue = {
   moves: [],
+  games: {
+    total: 0,
+    tied: 0,
+    x: 0,
+    o: 0,
+  },
 };
 
 export default class Store {
@@ -11,8 +17,13 @@ export default class Store {
 
   get gameMove() {
     const state = this.#getState();
+    let currentPlayer;
 
-    const currentPlayer = state.moves.length % 2 === 0 ? "X" : "O";
+    if (state.games.total % 2 === 0) {
+      currentPlayer = state.moves.length % 2 === 0 ? "X" : "O";
+    } else {
+      currentPlayer = state.moves.length % 2 === 0 ? "O" : "X";
+    }
 
     return {
       currentPlayer,
@@ -46,6 +57,24 @@ export default class Store {
     return movesOfO;
   }
 
+  get totalXWins() {
+    const state = this.#getState();
+
+    return state.games.x;
+  }
+
+  get totalOWins() {
+    const state = this.#getState();
+
+    return state.games.o;
+  }
+
+  get totalTies() {
+    const state = this.#getState();
+
+    return state.games.tied;
+  }
+
   playMove(squareId) {
     const state = this.#getState();
 
@@ -65,6 +94,52 @@ export default class Store {
     const stateClone = structuredClone(state);
 
     stateClone.moves = [];
+
+    this.#saveState(stateClone);
+  }
+
+  deleteGames() {
+    const state = this.#getState();
+
+    const stateClone = structuredClone(state);
+
+    stateClone.games.x = 0;
+    stateClone.games.tied = 0;
+    stateClone.games.o = 0;
+    stateClone.games.total = 0;
+
+    this.#saveState(stateClone);
+  }
+
+  xWin() {
+    const state = this.#getState();
+
+    const stateClone = structuredClone(state);
+
+    stateClone.games.x += 1;
+    stateClone.games.total += 1;
+
+    this.#saveState(stateClone);
+  }
+
+  oWin() {
+    const state = this.#getState();
+
+    const stateClone = structuredClone(state);
+
+    stateClone.games.o += 1;
+    stateClone.games.total += 1;
+
+    this.#saveState(stateClone);
+  }
+
+  gameTie() {
+    const state = this.#getState();
+
+    const stateClone = structuredClone(state);
+
+    stateClone.games.tied += 1;
+    stateClone.games.total += 1;
 
     this.#saveState(stateClone);
   }

@@ -82,12 +82,18 @@ function init() {
 
       if (xWins.length === 1) {
         view.changeBGColorX(xWins[0]);
+        store.xWin();
         view.showWinModalX(playerMarker);
-      }
-
-      if (oWins.length === 1) {
+        view.changeXScore(store.totalXWins);
+      } else if (oWins.length === 1) {
         view.changeBGColorO(oWins[0]);
+        store.oWin();
         view.showWinModalO(playerMarker);
+        view.changeOScore(store.totalOWins);
+      } else if (store.gameMove.moves.length === 9) {
+        store.gameTie();
+        view.showTieModal();
+        view.changeTieScore(store.totalTies);
       }
     });
   });
@@ -103,6 +109,38 @@ function init() {
   view.bindRestart(() => {
     view.restartGame();
     store.deleteMoves();
+    view.setTurnIcon(store.gameMove.currentPlayer);
+  });
+
+  view.bindNewRoundWin(() => {
+    view.newGame();
+    store.deleteMoves();
+    view.setTurnIcon(store.gameMove.currentPlayer);
+  });
+
+  view.bindNewRoundTie(() => {
+    view.newGameTie();
+    store.deleteMoves();
+    view.setTurnIcon(store.gameMove.currentPlayer);
+  });
+
+  view.bindQuitGameWin(() => {
+    view.quitGameWin();
+    store.deleteMoves();
+    store.deleteGames();
+    view.changeOScore(store.totalOWins);
+    view.changeXScore(store.totalXWins);
+    view.changeTieScore(store.totalTies);
+    view.setTurnIcon(store.gameMove.currentPlayer);
+  });
+
+  view.bindQuitGameTie(() => {
+    view.quitGameTie();
+    store.deleteMoves();
+    store.deleteGames();
+    view.changeOScore(store.totalOWins);
+    view.changeXScore(store.totalXWins);
+    view.changeTieScore(store.totalTies);
     view.setTurnIcon(store.gameMove.currentPlayer);
   });
 }

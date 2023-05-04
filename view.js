@@ -16,9 +16,17 @@ export default class View {
     this.$.cancelRestart = document.getElementById("cancel-btn");
     this.$.restart = document.getElementById("restart-btn");
     this.$.win = document.querySelector(".round-end-modal");
+    this.$.tie = document.querySelector(".round-tie-modal");
     this.$.winMessage = document.getElementById("round-end-message");
     this.$.winIcon = document.getElementById("win-image");
     this.$.winDesc = document.getElementById("win-desc");
+    this.$.xScore = document.getElementById("x-score");
+    this.$.oScore = document.getElementById("o-score");
+    this.$.tieScore = document.getElementById("tie-score");
+    this.$.newRoundWin = document.getElementById("win-next-round");
+    this.$.newRoundTie = document.getElementById("tie-next-round");
+    this.$.quitWin = document.getElementById("quit-win");
+    this.$.quitTie = document.getElementById("quit-tie");
   }
 
   bindPlayerChoiceEvent(handler) {
@@ -51,6 +59,22 @@ export default class View {
 
   bindRestart(handler) {
     this.$.restart.addEventListener("click", handler);
+  }
+
+  bindNewRoundWin(handler) {
+    this.$.newRoundWin.addEventListener("click", handler);
+  }
+
+  bindNewRoundTie(handler) {
+    this.$.newRoundTie.addEventListener("click", handler);
+  }
+
+  bindQuitGameWin(handler) {
+    this.$.quitWin.addEventListener("click", handler);
+  }
+
+  bindQuitGameTie(handler) {
+    this.$.quitTie.addEventListener("click", handler);
   }
 
   // Helper Functions
@@ -110,12 +134,19 @@ export default class View {
     this.$.resetModal.classList.toggle("hidden");
   }
 
-  restartGame() {
-    this.$.resetModal.classList.toggle("hidden");
+  resetBoard() {
     const fullSquares = document.querySelectorAll(".board-piece");
     fullSquares.forEach((ele) => {
       ele.remove();
     });
+    this.$.squares.forEach((ele) => {
+      ele.style.border = 0;
+    });
+  }
+
+  restartGame() {
+    this.$.resetModal.classList.toggle("hidden");
+    this.resetBoard();
   }
 
   showWinModalX(playerMarker) {
@@ -152,5 +183,45 @@ export default class View {
       let tempSquare = document.getElementById(ele);
       tempSquare.style.border = "2px solid hsl(39, 100%, 69%)";
     });
+  }
+
+  changeXScore(score) {
+    this.$.xScore.textContent = String(score);
+  }
+
+  changeOScore(score) {
+    this.$.oScore.textContent = String(score);
+  }
+
+  newGame() {
+    this.$.win.classList.toggle("hidden");
+    this.resetBoard();
+  }
+
+  showTieModal() {
+    this.$.tie.classList.toggle("hidden");
+  }
+
+  changeTieScore(score) {
+    this.$.tieScore.textContent = String(score);
+  }
+
+  newGameTie() {
+    this.$.tie.classList.toggle("hidden");
+    this.resetBoard();
+  }
+
+  quitGameWin() {
+    this.$.win.classList.toggle("hidden");
+    this.$.gameBoard.classList.toggle("hidden");
+    this.$.gameMenu.classList.toggle("hidden");
+    this.resetBoard();
+  }
+
+  quitGameTie() {
+    this.$.tie.classList.toggle("hidden");
+    this.$.gameBoard.classList.toggle("hidden");
+    this.$.gameMenu.classList.toggle("hidden");
+    this.resetBoard();
   }
 }
