@@ -247,53 +247,6 @@ function init() {
     }
   });
 
-  // });
-
-  // Basic game of TTT
-
-  //   view.bindPlayerMove((event) => {
-  //     const existingMove = store.gameMove.moves.find(
-  //       (move) => move.id === event.id
-  //     );
-
-  //     if (existingMove) {
-  //       return;
-  //     }
-
-  //     view.setPlayerMove(event.id, store.gameMove.currentPlayer);
-  //     store.playMove(event.id);
-  //     view.setTurnIcon(store.gameMove.currentPlayer);
-
-  //     const xWins = winningPatterns.filter((pattern) => {
-  //       return pattern.every((ele) => {
-  //         return store.xMoves.includes(ele);
-  //       });
-  //     });
-
-  //     const oWins = winningPatterns.filter((pattern) => {
-  //       return pattern.every((ele) => {
-  //         return store.oMoves.includes(ele);
-  //       });
-  //     });
-
-  //     if (xWins.length === 1) {
-  //       view.changeBGColorX(xWins[0]);
-  //       store.xWin();
-  //       view.showWinModalX(playerMarker);
-  //       view.changeXScore(store.totalXWins);
-  //     } else if (oWins.length === 1) {
-  //       view.changeBGColorO(oWins[0]);
-  //       store.oWin();
-  //       view.showWinModalO(playerMarker);
-  //       view.changeOScore(store.totalOWins);
-  //     } else if (store.gameMove.moves.length === 9) {
-  //       store.gameTie();
-  //       view.showTieModal();
-  //       view.changeTieScore(store.totalTies);
-  //     }
-  //   });
-  // });
-
   view.bindGameReset(() => {
     view.setResetModal();
   });
