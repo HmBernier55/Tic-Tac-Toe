@@ -6,6 +6,17 @@ const initialValue = {
     x: 0,
     o: 0,
   },
+  squareIDs: [
+    "block-0",
+    "block-1",
+    "block-2",
+    "block-3",
+    "block-4",
+    "block-5",
+    "block-6",
+    "block-7",
+    "block-8",
+  ],
 };
 
 export default class Store {
@@ -57,6 +68,18 @@ export default class Store {
     return movesOfO;
   }
 
+  get allMoves() {
+    const state = this.#getState();
+
+    const moves = [];
+
+    state.moves.forEach((ele) => {
+      moves.push(ele.id);
+    });
+
+    return moves;
+  }
+
   get totalXWins() {
     const state = this.#getState();
 
@@ -73,6 +96,12 @@ export default class Store {
     const state = this.#getState();
 
     return state.games.tied;
+  }
+
+  get squareIDs() {
+    const state = this.#getState();
+
+    return state.squareIDs;
   }
 
   playMove(squareId) {
@@ -107,6 +136,37 @@ export default class Store {
     stateClone.games.tied = 0;
     stateClone.games.o = 0;
     stateClone.games.total = 0;
+
+    this.#saveState(stateClone);
+  }
+
+  deleteSquareID(squareId) {
+    const state = this.#getState();
+
+    const stateClone = structuredClone(state);
+
+    const idx = stateClone.squareIDs.indexOf(squareId);
+    stateClone.squareIDs.splice(idx, 1);
+
+    this.#saveState(stateClone);
+  }
+
+  resetSquareID() {
+    const state = this.#getState();
+
+    const stateClone = structuredClone(state);
+
+    stateClone.squareIDs = [
+      "block-0",
+      "block-1",
+      "block-2",
+      "block-3",
+      "block-4",
+      "block-5",
+      "block-6",
+      "block-7",
+      "block-8",
+    ];
 
     this.#saveState(stateClone);
   }

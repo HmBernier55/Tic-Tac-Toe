@@ -152,9 +152,20 @@ export default class View {
   showWinModalX(playerMarker) {
     this.$.win.classList.toggle("hidden");
     if (playerMarker["P1"] === "X") {
-      this.$.winMessage.textContent = "Player 1 wins!";
+      this.$.winMessage.textContent = "Player 1 Wins!";
     } else {
       this.$.winMessage.textContent = "Player 2 wins!";
+    }
+    this.$.winIcon.src = "./assets/icon-x.svg";
+    this.$.winDesc.style.color = "hsl(178, 60%, 48%)";
+  }
+
+  showWinModalXCPU(playerMarker) {
+    this.$.win.classList.toggle("hidden");
+    if (playerMarker["P1"] === "X") {
+      this.$.winMessage.textContent = "You won!";
+    } else {
+      this.$.winMessage.textContent = "Oh no, you lost..";
     }
     this.$.winIcon.src = "./assets/icon-x.svg";
     this.$.winDesc.style.color = "hsl(178, 60%, 48%)";
@@ -173,6 +184,17 @@ export default class View {
       this.$.winMessage.textContent = "Player 1 wins!";
     } else {
       this.$.winMessage.textContent = "Player 2 wins!";
+    }
+    this.$.winIcon.src = "./assets/icon-o.svg";
+    this.$.winDesc.style.color = "hsl(39, 100%, 69%)";
+  }
+
+  showWinModalOCPU(playerMarker) {
+    this.$.win.classList.toggle("hidden");
+    if (playerMarker["P1"] === "O") {
+      this.$.winMessage.textContent = "You won!";
+    } else {
+      this.$.winMessage.textContent = "Oh no, you lost..";
     }
     this.$.winIcon.src = "./assets/icon-o.svg";
     this.$.winDesc.style.color = "hsl(39, 100%, 69%)";
