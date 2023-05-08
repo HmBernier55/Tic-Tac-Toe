@@ -1,6 +1,9 @@
 export default class View {
   $ = {};
 
+  /**
+   * Creating variables for all the elements that I need to add functionality to within index.js
+   */
   constructor() {
     this.$.playerChoice = document.querySelectorAll(".player-button");
     this.$.newGameCPU = document.querySelector(".game-menu__new-game--cpu");
@@ -29,6 +32,10 @@ export default class View {
     this.$.quitTie = document.getElementById("quit-tie");
   }
 
+  /**
+   * Binding Functions
+   * - Adding event listeners to all the buttons and having the functionality behind the buttons being inputted as a function from index.js
+   */
   bindPlayerChoiceEvent(handler) {
     this.$.playerChoice.forEach((ele) => {
       ele.addEventListener("click", handler);
@@ -77,7 +84,12 @@ export default class View {
     this.$.quitTie.addEventListener("click", handler);
   }
 
-  // Helper Functions
+  /**
+   * Helper Functions
+   * - Functions that either help out with functionality within this file or index.js
+   */
+
+  // Sets CPU game board
   setGameBoardCPU(playerMarker) {
     this.$.gameMenu.classList.toggle("hidden");
     this.$.gameBoard.classList.toggle("hidden");
@@ -91,6 +103,7 @@ export default class View {
     }
   }
 
+  // Sets Multiplayer game board
   setGameBoardMulti(playerMarker) {
     this.$.gameMenu.classList.toggle("hidden");
     this.$.gameBoard.classList.toggle("hidden");
@@ -104,6 +117,7 @@ export default class View {
     }
   }
 
+  // Displays the player move within the squares
   setPlayerMove(squareId, currentPlayer) {
     const square = document.getElementById(squareId);
     const icon = document.createElement("img");
@@ -118,6 +132,7 @@ export default class View {
     square.appendChild(icon);
   }
 
+  // Displays the correct turn icon
   setTurnIcon(currentPlayer) {
     if (currentPlayer === "X") {
       this.$.turn.src = "./assets/icon-x.svg";
@@ -126,14 +141,17 @@ export default class View {
     }
   }
 
+  // Toggles the reset modal on when the reset button is clicked
   setResetModal() {
     this.$.resetModal.classList.toggle("hidden");
   }
 
+  // Toggles the reset modal off when the cancel button is clicked
   cancelReset() {
     this.$.resetModal.classList.toggle("hidden");
   }
 
+  // Resets the board back to the beginning of the round
   resetBoard() {
     const fullSquares = document.querySelectorAll(".board-piece");
     fullSquares.forEach((ele) => {
@@ -144,11 +162,13 @@ export default class View {
     });
   }
 
+  // Toggles the reset modal off and resets the board
   restartGame() {
     this.$.resetModal.classList.toggle("hidden");
     this.resetBoard();
   }
 
+  // Toggles the win modal on and displays the correct message for an X win on multiplayer
   showWinModalX(playerMarker) {
     this.$.win.classList.toggle("hidden");
     if (playerMarker["P1"] === "X") {
@@ -160,6 +180,7 @@ export default class View {
     this.$.winDesc.style.color = "hsl(178, 60%, 48%)";
   }
 
+  // Toggles the win modal on and displays the correct message for an X win on CPU
   showWinModalXCPU(playerMarker) {
     this.$.win.classList.toggle("hidden");
     if (playerMarker["P1"] === "X") {
@@ -171,6 +192,7 @@ export default class View {
     this.$.winDesc.style.color = "hsl(178, 60%, 48%)";
   }
 
+  // Changes the color of the winning squares for X
   changeBGColorX(squares) {
     squares.forEach((ele) => {
       let tempSquare = document.getElementById(ele);
@@ -178,6 +200,7 @@ export default class View {
     });
   }
 
+  // Toggles the win modal on and displays the correct message for an O win on multiplayer
   showWinModalO(playerMarker) {
     this.$.win.classList.toggle("hidden");
     if (playerMarker["P1"] === "O") {
@@ -189,6 +212,7 @@ export default class View {
     this.$.winDesc.style.color = "hsl(39, 100%, 69%)";
   }
 
+  // Toggles the win modal on and displays the correct message for an O win on CPU
   showWinModalOCPU(playerMarker) {
     this.$.win.classList.toggle("hidden");
     if (playerMarker["P1"] === "O") {
@@ -200,6 +224,7 @@ export default class View {
     this.$.winDesc.style.color = "hsl(39, 100%, 69%)";
   }
 
+  // Changes the color of the winning squares for O
   changeBGColorO(squares) {
     squares.forEach((ele) => {
       let tempSquare = document.getElementById(ele);
@@ -207,32 +232,39 @@ export default class View {
     });
   }
 
+  // Changes the score for X
   changeXScore(score) {
     this.$.xScore.textContent = String(score);
   }
 
+  // Changes the score for O
   changeOScore(score) {
     this.$.oScore.textContent = String(score);
   }
 
+  // Toggles the win modal off and resets the board
   newGame() {
     this.$.win.classList.toggle("hidden");
     this.resetBoard();
   }
 
+  // Toggles the tie modal on
   showTieModal() {
     this.$.tie.classList.toggle("hidden");
   }
 
+  // Changes the score for ties
   changeTieScore(score) {
     this.$.tieScore.textContent = String(score);
   }
 
+  // Toggles the tie modal off and resets the board
   newGameTie() {
     this.$.tie.classList.toggle("hidden");
     this.resetBoard();
   }
 
+  // Toggles the win modal and TTT board off, toggles the game menu on, and resets the board
   quitGameWin() {
     this.$.win.classList.toggle("hidden");
     this.$.gameBoard.classList.toggle("hidden");
@@ -240,6 +272,7 @@ export default class View {
     this.resetBoard();
   }
 
+  // Toggles the tie modal and TTT board off, toggles the game menu on, and resets the board
   quitGameTie() {
     this.$.tie.classList.toggle("hidden");
     this.$.gameBoard.classList.toggle("hidden");

@@ -1,3 +1,4 @@
+// Initial values for moves, game info, and square ids
 const initialValue = {
   moves: [],
   games: {
@@ -26,6 +27,11 @@ export default class Store {
     this.players = players;
   }
 
+  /**
+   * Getter Functions
+   */
+
+  // Retrieves the current player (either X or O) and the moves array
   get gameMove() {
     const state = this.#getState();
     let currentPlayer;
@@ -42,6 +48,7 @@ export default class Store {
     };
   }
 
+  // Retrieves an array of X's moves
   get xMoves() {
     const state = this.#getState();
     const movesOfX = [];
@@ -55,6 +62,7 @@ export default class Store {
     return movesOfX;
   }
 
+  // Retrieves an array of O's moves
   get oMoves() {
     const state = this.#getState();
     const movesOfO = [];
@@ -68,6 +76,7 @@ export default class Store {
     return movesOfO;
   }
 
+  // Retrieves an array of all the moves played during each game
   get allMoves() {
     const state = this.#getState();
 
@@ -80,30 +89,39 @@ export default class Store {
     return moves;
   }
 
+  // Retrieves the total wins for X
   get totalXWins() {
     const state = this.#getState();
 
     return state.games.x;
   }
 
+  // Retrieves the total wins for O
   get totalOWins() {
     const state = this.#getState();
 
     return state.games.o;
   }
 
+  // Retrieves the total ties
   get totalTies() {
     const state = this.#getState();
 
     return state.games.tied;
   }
 
+  // Retrieves the array of square ids
   get squareIDs() {
     const state = this.#getState();
 
     return state.squareIDs;
   }
 
+  /**
+   * Helper Functions
+   */
+
+  // Adds a move (an object consisting of the square id and who played it) to the moves array
   playMove(squareId) {
     const state = this.#getState();
 
@@ -117,6 +135,7 @@ export default class Store {
     this.#saveState(stateClone);
   }
 
+  // Deletes all the moves within the moves array
   deleteMoves() {
     const state = this.#getState();
 
@@ -127,6 +146,7 @@ export default class Store {
     this.#saveState(stateClone);
   }
 
+  // Resets all the score variables back to zero
   deleteGames() {
     const state = this.#getState();
 
@@ -140,6 +160,7 @@ export default class Store {
     this.#saveState(stateClone);
   }
 
+  // Deletes a square id from the square id array
   deleteSquareID(squareId) {
     const state = this.#getState();
 
@@ -151,6 +172,7 @@ export default class Store {
     this.#saveState(stateClone);
   }
 
+  // Resets the square id array
   resetSquareID() {
     const state = this.#getState();
 
@@ -171,6 +193,7 @@ export default class Store {
     this.#saveState(stateClone);
   }
 
+  // Updates total games and X wins values
   xWin() {
     const state = this.#getState();
 
@@ -182,6 +205,7 @@ export default class Store {
     this.#saveState(stateClone);
   }
 
+  // Updates total games and O wins values
   oWin() {
     const state = this.#getState();
 
@@ -193,6 +217,7 @@ export default class Store {
     this.#saveState(stateClone);
   }
 
+  // Updates total games and tie values
   gameTie() {
     const state = this.#getState();
 
@@ -204,6 +229,10 @@ export default class Store {
     this.#saveState(stateClone);
   }
 
+  /**
+   * Private Functions
+   * - Used to get the state variable and update the state variable
+   */
   #getState() {
     return this.#state;
   }
